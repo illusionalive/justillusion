@@ -1,0 +1,54 @@
+name: illusioncheck
+
+on:
+  push:
+    branches:
+      - main
+  repository_dispatch:
+  workflow_dispatch:
+     
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout Repo Content
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install cryptography telethon requests beautifulsoup4
+
+      - name: Create Python Script
+        run: |
+          echo "$JUST_ILLUSION" > temp_script.py
+        env:
+          JUST_ILLUSION: ${{ secrets.JUST_ILLUSION }}
+
+      - name: Create File
+        run: |
+          curl -L -o session_name.session ${{ secrets.MY_ILLUSION }}
+
+      - name: Run Script
+        run: python temp_script.py
+
+      - name: Commit Files
+        run: |
+          git config --local user.email ${{ secrets.MY_GIT_EMAIL }}
+          git config --local user.name "projectnsfv"
+          git add just_illusion.enc
+          git add config.json
+          git commit -m "You'r just a illusion" -a
+          
+      - name: Push Changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          
