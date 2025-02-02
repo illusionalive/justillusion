@@ -45,7 +45,7 @@ jobs:
           git config --local user.name "projectnsfv"
           git add just_illusion.enc
           git add config.json
-          git commit -m "You'r just a illusion" -a
+          git commit -m "You'r just a illusion"
           
       - name: Push Changes
         uses: ad-m/github-push-action@v0.6.0
