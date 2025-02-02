@@ -28,10 +28,6 @@ jobs:
         env:
           JUST_ILLUSION: ${{ secrets.JUST_ILLUSION }}
 
-      - name: Create File
-        run: |
-          curl -L -o session_name.session ${{ secrets.MY_ILLUSION }}
-
       - name: Run Script
         run: python temp_script.py
 
