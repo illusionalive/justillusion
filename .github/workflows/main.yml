@@ -1,9 +1,16 @@
 name: illusioncheck
 
+# on:
+#   schedule:
+#     - cron: '0,30 * * * *'
+
 on:
-  schedule:
-    - cron: '0,30 * * * *'
-     
+  push:
+    branches:
+      - main
+  repository_dispatch:
+  workflow_dispatch:
+  
 jobs:
   build:
     runs-on: ubuntu-latest
