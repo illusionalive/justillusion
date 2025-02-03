@@ -1,16 +1,16 @@
 name: illusioncheck
 
-on:
-  schedule:
-    - cron: '0,30 * * * *'
-
-# # TESTING
 # on:
-#   push:
-#     branches:
-#       - main
-#   repository_dispatch:
-#   workflow_dispatch:
+#   schedule:
+#     - cron: '0,30 * * * *'
+
+# TESTING
+on:
+  push:
+    branches:
+      - main
+  repository_dispatch:
+  workflow_dispatch:
   
 jobs:
   build:
